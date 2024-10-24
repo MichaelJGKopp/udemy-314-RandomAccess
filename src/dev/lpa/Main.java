@@ -15,7 +15,7 @@ public class Main {
     String datFileName = "studentsRA";
     BuildStudentData.build(datFileName);
     readIndexIntoMap(datFileName);
-    String data = readRecords(datFileName, 50, 51, 52);
+    String data = readRecords(datFileName, 1, 51, 98);
     System.out.print(data);
   }
   
@@ -40,9 +40,9 @@ public class Main {
     
     try (RandomAccessFile ra = new RandomAccessFile(datFileName + ".dat","r")) {
       for (long id : ids) {
-        long filePointer = indexedIds.get(id);
-        ra.seek(filePointer);
-        data.append(ra.readLine()).append(System.lineSeparator());
+        long filePointerStart = indexedIds.get(id);
+        ra.seek(filePointerStart);
+        data.append(ra.readUTF()).append(System.lineSeparator());
       }
     } catch (IOException e) {
       throw new RuntimeException(e);
