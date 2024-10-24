@@ -38,7 +38,7 @@ public class Main {
   
     StringBuilder data = new StringBuilder();
     
-    try (RandomAccessFile ra = new RandomAccessFile(datFileName,"r")) {
+    try (RandomAccessFile ra = new RandomAccessFile(datFileName + ".dat","r")) {
       for (long id : ids) {
         long filePointer = indexedIds.get(id);
         ra.seek(filePointer);
