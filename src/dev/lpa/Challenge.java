@@ -47,7 +47,7 @@ public class Challenge {
       writeRecordToFile(ra, ralph);
       
       // read again from file and print
-      ralph = readRecordFromFile(ra, ralph.getId());
+      ralph = readRecordFromFile(ra, ralph.getEmployeeId());
       System.out.println(ralph);
       
     } catch (IOException e) {
@@ -70,11 +70,11 @@ public class Challenge {
   public static void writeRecordToFile(RandomAccessFile ra, Employee em) throws IOException {
     
     // retrieve record position in file by id
-    long filePointer = indexMap.get(em.getId());
+    long filePointer = indexMap.get(em.getEmployeeId());
     ra.seek(filePointer);
     
     // write record into file
-    ra.writeInt(em.getId());
+    ra.writeInt(em.getEmployeeId());
     ra.writeDouble(em.getSalary());
     ra.writeUTF(em.getFirstName());
     ra.writeUTF(em.getLastName());
