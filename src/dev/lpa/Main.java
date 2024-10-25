@@ -13,7 +13,7 @@ public class Main {
   public static void main(String[] args) {
     
     String datFileName = "studentsRA";
-    BuildStudentData.build(datFileName);
+    BuildStudentData.build(datFileName, false);
     readIndexIntoMap(datFileName);
     String data = readRecords(datFileName, 1, 51, 98);
     System.out.print(data);

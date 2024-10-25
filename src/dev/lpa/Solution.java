@@ -11,12 +11,20 @@ public class Solution {
   public static final Map<Long, Long> indexedIds = new LinkedHashMap<>();
   private static int recordsInFile = 0;
   
+  static {
+    try (RandomAccessFile rb = new RandomAccessFile("student.idx", "r")) {
+      loadIndex(rb, 0);
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+  }
+  
   public static void main(String[] args) {
     
-//   BuildStudentData.build("studentData");
+//   BuildStudentData.build("student", true);
     
-    try (RandomAccessFile ra = new RandomAccessFile("studentData.dat", "r")) {
-      loadIndex(ra, 0);
+    try (RandomAccessFile ra = new RandomAccessFile("student.dat", "r")) {
+    
       Scanner scanner = new Scanner(System.in);
       System.out.println("Enter a Student Id or 0 to quit");
       while (scanner.hasNext()) {
